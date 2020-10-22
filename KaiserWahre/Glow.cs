@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace KaiserWahre
 {
     class Glow
     {
-        static int ClientPtr = Program.ClientPtr;
-
         static int GlowEntityIdx;
         static int Glower;
         static int EntityGlowIndex;
@@ -25,9 +23,13 @@ namespace KaiserWahre
         static float B = 0.0f; //blue
         static float ALFA = 1.0f; //alpha
 
+        static float TR = 0.0f; //red
+        static float TG = 1.0f; //green
+        static float TB = 0.0f; //blue
+
+
         static bool t = true;
         static bool f = false;
-
         public static void GlowThread()
         {
             while (true)
@@ -36,10 +38,10 @@ namespace KaiserWahre
                 {
                     GlowEntityIdx = i; //glow entity index is at iterator
 
-                    LocalPlayer = KaiserMemory.ReadMemory<int>(ClientPtr + hazedumper.signatures.dwLocalPlayer);
-                    GlowBasePtr = KaiserMemory.ReadMemory<int>(ClientPtr + hazedumper.signatures.dwGlowObjectManager);
+                    LocalPlayer = KaiserMemory.ReadMemory<int>(Program.ClientPtr + hazedumper.signatures.dwLocalPlayer);
+                    GlowBasePtr = KaiserMemory.ReadMemory<int>(Program.ClientPtr + hazedumper.signatures.dwGlowObjectManager);
                     LocalTeam = KaiserMemory.ReadMemory<int>(LocalPlayer + hazedumper.netvars.m_iTeamNum);
-                    Glower = KaiserMemory.ReadMemory<int>(ClientPtr + hazedumper.signatures.dwEntityList + (GlowEntityIdx - 1) * 0x10);
+                    Glower = KaiserMemory.ReadMemory<int>(Program.ClientPtr + hazedumper.signatures.dwEntityList + (GlowEntityIdx - 1) * 0x10);
                     EntityGlowIndex = KaiserMemory.ReadMemory<int>(Glower + hazedumper.netvars.m_iGlowIndex);
                     GLLocalTeam = KaiserMemory.ReadMemory<int>(Glower + 0xF4);
                     entityHealth = KaiserMemory.ReadMemory<int>(Glower + 0x100);
@@ -55,7 +57,16 @@ namespace KaiserWahre
                         KaiserMemory.WriteMemory<bool>(GlowBasePtr + ((EntityGlowIndex * 0x38) + 0x25), f);
                         KaiserMemory.WriteMemory<bool>(GlowBasePtr + ((EntityGlowIndex * 0x38) + 0x2C), f);
                     }
-
+                    else
+                    {
+                        KaiserMemory.WriteMemory<float>(GlowBasePtr + ((EntityGlowIndex * 0x38) + 0x4), TR);
+                        KaiserMemory.WriteMemory<float>(GlowBasePtr + ((EntityGlowIndex * 0x38) + 0x8), TG);
+                        KaiserMemory.WriteMemory<float>(GlowBasePtr + ((EntityGlowIndex * 0x38) + 0xC), TB);
+                        KaiserMemory.WriteMemory<float>(GlowBasePtr + ((EntityGlowIndex * 0x38) + 0x10), ALFA);
+                        KaiserMemory.WriteMemory<bool>(GlowBasePtr + ((EntityGlowIndex * 0x38) + 0x24), t);
+                        KaiserMemory.WriteMemory<bool>(GlowBasePtr + ((EntityGlowIndex * 0x38) + 0x25), f);
+                        KaiserMemory.WriteMemory<bool>(GlowBasePtr + ((EntityGlowIndex * 0x38) + 0x2C), f);
+                    }
                     Thread.Sleep(1);
                 }
             }

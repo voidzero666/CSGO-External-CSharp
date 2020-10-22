@@ -47,10 +47,10 @@ namespace KaiserWahre
             }
             while (TargetProcess == null);
 
-            procHandle = OpenProcess(PROCESS_ALL_ACCESS, false, TargetProcess.Id); //gets your process handle
+            procHandle = OpenProcess(PROCESS_ALL_ACCESS, false, TargetProcess.Id); // Sets Our ProcessHandle
         }
 
-        //Getmodulebaseaddress in C# is a big lmao
+        //Getmodulebaseaddress C++ to C# rofl
         public static int GetModuleBaseAdress(string modName)
         {
             try
@@ -70,6 +70,7 @@ namespace KaiserWahre
             return -1;
         }
 
+
         public static T ReadMemory<T>(int address) where T : struct
         {
             int ByteSize = Marshal.SizeOf(typeof(T));
@@ -81,6 +82,7 @@ namespace KaiserWahre
             return ByteArrayToStructure<T>(buffer);
         }
 
+
         public static byte[] ReadMemory(int offset, int size)
         {
             byte[] buffer = new byte[size];
@@ -89,6 +91,8 @@ namespace KaiserWahre
 
             return buffer;
         }
+
+
         public static void WriteMemory<T>(int Adress, object Value)
         {
             byte[] buffer = StructureToByteArray(Value); // Transform Data To ByteArray
@@ -104,7 +108,20 @@ namespace KaiserWahre
         }
 
 
-        #region Conversions
+
+
+
+
+
+
+
+
+
+
+
+
+
+        #region Transformation
         public static float[] ConvertToFloatArray(byte[] bytes)
         {
             if (bytes.Length % 4 != 0)
