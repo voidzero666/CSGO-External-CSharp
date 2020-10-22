@@ -33,6 +33,10 @@ namespace KaiserWahre
         public static int m_iNumberOfBytesRead = 0;
         public static int m_iNumberOfBytesWritten = 0;
 
+
+        //
+
+
         //get a handle on csgo proc
         public static void initProc(string procName)
         {
