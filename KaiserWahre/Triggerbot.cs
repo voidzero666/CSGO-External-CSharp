@@ -5,10 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-<<<<<<< Updated upstream
 using System.Windows.Forms;
-=======
->>>>>>> Stashed changes
 using System.Windows.Input;
 
 namespace KaiserWahre
@@ -47,7 +44,6 @@ namespace KaiserWahre
                 Thread.Sleep(1);
                 while (GetAsyncKeyState(0x04))
                 {
-<<<<<<< Updated upstream
                    LocalPlayer = KaiserMemory.ReadMemory<int>(Program.ClientPtr + hazedumper.signatures.dwLocalPlayer);
                    LocalTeam =  KaiserMemory.ReadMemory<int>(LocalPlayer + hazedumper.netvars.m_iTeamNum);
                    CrosshairID = KaiserMemory.ReadMemory<int>(LocalPlayer + hazedumper.netvars.m_iCrosshairId);
@@ -55,15 +51,6 @@ namespace KaiserWahre
                    CrosshairIDTeam = KaiserMemory.ReadMemory<int>(EntityInCrosshair + hazedumper.netvars.m_iTeamNum);
                    EntityHealth = KaiserMemory.ReadMemory<int>(EntityInCrosshair + hazedumper.netvars.m_iHealth);
                    if (EntityHealth > 0)
-=======
-                    LocalPlayer = KaiserMemory.ReadMemory<int>(Program.ClientPtr + hazedumper.signatures.dwLocalPlayer);
-                    LocalTeam = KaiserMemory.ReadMemory<int>(LocalPlayer + hazedumper.netvars.m_iTeamNum);
-                    CrosshairID = KaiserMemory.ReadMemory<int>(LocalPlayer + hazedumper.netvars.m_iCrosshairId);
-                    EntityInCrosshair = KaiserMemory.ReadMemory<int>(Program.ClientPtr + hazedumper.signatures.dwEntityList + (CrosshairID - 1) * 0x10);
-                    CrosshairIDTeam = KaiserMemory.ReadMemory<int>(EntityInCrosshair + hazedumper.netvars.m_iTeamNum);
-                    EntityHealth = KaiserMemory.ReadMemory<int>(EntityInCrosshair + hazedumper.netvars.m_iHealth);
-                    if (EntityHealth > 0)
->>>>>>> Stashed changes
                     {
                         if (LocalTeam != CrosshairIDTeam)
                         {

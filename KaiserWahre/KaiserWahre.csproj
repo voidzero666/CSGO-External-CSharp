@@ -45,12 +45,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< Updated upstream
     <Compile Include="Bunnyhop.cs" />
-=======
-    <Compile Include="Bhop.cs" />
-    <Compile Include="Triggerbot.cs" />
->>>>>>> Stashed changes
     <Compile Include="CSGO.cs" />
     <Compile Include="Glow.cs" />
     <Compile Include="KaiserMemory.cs" />

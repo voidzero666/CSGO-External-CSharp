@@ -67,23 +67,6 @@ namespace KaiserWahre
                         KaiserMemory.WriteMemory<bool>(GlowBasePtr + ((EntityGlowIndex * 0x38) + 0x25), f);
                         KaiserMemory.WriteMemory<bool>(GlowBasePtr + ((EntityGlowIndex * 0x38) + 0x2C), f);
                     }
-<<<<<<< Updated upstream
-=======
-                    else
-                    {
-                        obj = KaiserMemory.ReadMemory<SDK.GlowObjectDefinition>(GlowBasePtr + (EntityGlowIndex * 0x38));
-
-                        obj.r = 0.0f;
-                        obj.g = 1.0f;
-                        obj.b = 0.0f;
-                        obj.a = 1.0f;
-                        obj.m_bRenderWhenOccluded = true;
-                        obj.m_bRenderWhenUnoccluded = false;
-                        obj.m_bFullBloom = true;
-
-                        KaiserMemory.WriteMemory<SDK.GlowObjectDefinition>(GlowBasePtr + (EntityGlowIndex * 0x38), obj);
-                    }
->>>>>>> Stashed changes
                     Thread.Sleep(1);
                 }
             }

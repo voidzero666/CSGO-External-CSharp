@@ -27,7 +27,6 @@ namespace KaiserWahre
             KaiserMemory.initProc("csgo"); //init process handle on CSGO process.
             ClientPtr = KaiserMemory.GetModuleBaseAdress("client");
 
-<<<<<<< Updated upstream
             Thread t = new Thread(new ThreadStart(Glow.GlowThread));
             Thread Bh = new Thread(new ThreadStart(Bunnyhop.Bhop));
             Thread TB = new Thread(new ThreadStart(Triggerbot.Trigger));
@@ -35,15 +34,5 @@ namespace KaiserWahre
             Bh.Start();
             TB.Start();
         } 
-=======
-            Thread glow = new Thread(new ThreadStart(Glow.GlowThread));
-            Thread bhop = new Thread(new ThreadStart(Bhops.Bhop));
-            Thread Trigger = new Thread(new ThreadStart(Triggerbot.Trigger));
-            glow.Start();
-            bhop.Start();
-            Trigger.Start();
-
-        }
->>>>>>> Stashed changes
     }
 }
