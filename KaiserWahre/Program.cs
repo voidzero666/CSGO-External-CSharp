@@ -29,8 +29,5 @@ namespace KaiserWahre
             Thread glow = new Thread(new ThreadStart(Glow.GlowThread));
             glow.Start();
         }
-
-
-       
     }
 }

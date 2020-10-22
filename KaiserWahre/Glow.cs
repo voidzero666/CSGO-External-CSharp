@@ -19,15 +19,6 @@ namespace KaiserWahre
         static int entityHealth;
         static int LocalTeam;
         static int GLLocalTeam;
-
-        static float R = 1.0f; //red
-        static float G = 0.0f; //green
-        static float B = 0.0f; //blue
-        static float ALFA = 1.0f; //alpha
-
-        static bool t = true;
-        static bool f = false;
-
         public static void GlowThread()
         {
             while (true)
@@ -44,16 +35,21 @@ namespace KaiserWahre
                     GLLocalTeam = KaiserMemory.ReadMemory<int>(Glower + 0xF4);
                     entityHealth = KaiserMemory.ReadMemory<int>(Glower + 0x100);
 
+                    SDK.GlowObjectDefinition obj = new SDK.GlowObjectDefinition();
+
                     if (GLLocalTeam != LocalTeam)
                     {
+                        obj = KaiserMemory.ReadMemory<SDK.GlowObjectDefinition>(GlowBasePtr + (EntityGlowIndex * 0x38));
 
-                        KaiserMemory.WriteMemory<float>(GlowBasePtr + ((EntityGlowIndex * 0x38) + 0x4), R);
-                        KaiserMemory.WriteMemory<float>(GlowBasePtr + ((EntityGlowIndex * 0x38) + 0x8), G);
-                        KaiserMemory.WriteMemory<float>(GlowBasePtr + ((EntityGlowIndex * 0x38) + 0xC), B);
-                        KaiserMemory.WriteMemory<float>(GlowBasePtr + ((EntityGlowIndex * 0x38) + 0x10), ALFA);
-                        KaiserMemory.WriteMemory<bool>(GlowBasePtr + ((EntityGlowIndex * 0x38) + 0x24), t);
-                        KaiserMemory.WriteMemory<bool>(GlowBasePtr + ((EntityGlowIndex * 0x38) + 0x25), f);
-                        KaiserMemory.WriteMemory<bool>(GlowBasePtr + ((EntityGlowIndex * 0x38) + 0x2C), f);
+                        obj.r = 1.0f;
+                        obj.g = 0.0f;
+                        obj.b = 0.0f;
+                        obj.a = 1.0f;
+                        obj.m_bRenderWhenOccluded = true;
+                        obj.m_bRenderWhenUnoccluded = false;
+                        obj.m_bFullBloom = false;
+
+                        KaiserMemory.WriteMemory<SDK.GlowObjectDefinition>(GlowBasePtr + (EntityGlowIndex * 0x38), obj);
                     }
 
                     Thread.Sleep(1);
